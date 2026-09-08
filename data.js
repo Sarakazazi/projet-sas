@@ -206,7 +206,7 @@ while (choix !== 0) {
     switch (choix) {
 
         case 1:
-            console.log("Afficher les trajets");
+            afficheTrajets();
             break;
 
         case 2:
@@ -241,4 +241,16 @@ while (choix !== 0) {
             console.log("Choix invalide !");
     }
 }
-console.log("TEST");
+function afficheTrajets() {
+    for (let i = 0; i < trips.length; i++) {
+        console.log(
+            trips[i].id + " - " +
+            trips[i].departure + " -> " +
+            trips[i].destination + " | " +
+            trips[i].departureTime + " - " +
+            trips[i].arrivalTime + " | " +
+            trips[i].price + " DH | " +
+            trips[i].availableSeats + " places"
+        );
+    }
+}
