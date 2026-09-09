@@ -218,7 +218,7 @@ while (choix !== 0) {
             break;
 
         case 4:
-            annulerTicket
+            annulerTicket();
             break;
 
         case 5:
@@ -322,21 +322,38 @@ function annulerTicket() {
 
     const ticketId = parseInt(prompt("Identifiant du ticket : "));
 
-    let ticket = null;
+    let index = -1;
 
     for (let i = 0; i < tickets.length; i++) {
 
         if (tickets[i].id === ticketId) {
 
-            ticket = tickets[i];
+            index = i;
 
             break;
         }
     }
-    if (ticket === null) {
 
-    console.log("Ticket introuvable.");
+    if (index === -1) {
 
-    return;
-}
+        console.log("Ticket introuvable.");
+
+        return;
+    }
+
+    const ticket = tickets[index];
+
+    tickets.splice(index, 1);
+
+    for (let i = 0; i < trips.length; i++) {
+
+        if (trips[i].id === ticket.tripId) {
+
+            trips[i].availableSeats++;
+
+            break;
+        }
+    }
+
+    console.log("Ticket annulé avec succès.");
 }
